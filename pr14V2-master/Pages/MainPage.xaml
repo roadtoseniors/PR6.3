@@ -1,0 +1,103 @@
+﻿<Page x:Class="pr14V2.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pr14V2.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- header -->
+        <Border Grid.Row="0" Background="#FFFFFF" Padding="40,0" BorderBrush="#2C2C2C" BorderThickness="0,0,0,1">
+
+            <Grid VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- лого -->
+                <TextBlock Grid.Column="0" Text="КИНОРМАСИК" FontSize="26" FontWeight="Bold" Foreground="#2C2C2C" VerticalAlignment="Center" Margin="0,0,60,0"/>
+
+                <!-- поиск -->
+                <Border Grid.Column="1"  MaxWidth="500" Height="44" Background="#F8F8F8" CornerRadius="22" Padding="20,0" VerticalAlignment="Center">
+                    <TextBox x:Name="Search" Height="44" FontSize="15" VerticalAlignment="Center" Background="Transparent" Foreground="#2C2C2C" BorderThickness="0" VerticalContentAlignment="Center" TextChanged="SearchFilm"/>
+                </Border>
+
+                <!-- вход -->
+                <Border Grid.Column="2" CornerRadius="22" Background="#2C2C2C" >
+                    <Button x:Name="MainLoginButton" Click="MainLoginButton_Click"  Height="44" Content="Войти" FontSize="15" FontWeight="Medium" Background="Transparent"  Foreground="White" BorderThickness="0" Padding="32,0" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- фильтры -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0">
+            <ComboBox x:Name="SortComboBox" Width="200" Height="36" Background="#F0F0F0" Foreground="#2C2C2C"  VerticalContentAlignment="Center" SelectionChanged="SortFilm">
+                <ComboBoxItem x:Name="RateSort" Content="Сортировать по рейтингу" />
+                <ComboBoxItem x:Name="NameSort" Content="Сортировать по названию" />
+            </ComboBox>
+        </StackPanel>
+
+        <!-- main -->
+        <ListBox x:Name="prod" Grid.Row="2" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Padding="28,0">
+
+            <!-- панель элементов -->
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <!-- шаблон карточки -->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="260" Margin="12" Background="White" CornerRadius="12" MouseLeftButtonDown="MovieCard_DoubleClick">
+
+                        <StackPanel>
+
+                            <!-- обложка -->
+                            <Border Height="280" Background="White" CornerRadius="12,12,0,0">
+
+                                <Border Background="#E8E8E8" Margin="12,12,12,0" CornerRadius="8">
+                                    <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                                </Border>
+                            </Border>
+
+                            <!-- инфа -->
+                            <StackPanel Margin="12">
+
+                                <!-- название -->
+                                <TextBlock Text="{Binding MovieName}" FontSize="17" FontWeight="SemiBold" Foreground="#2C2C2C" Margin="0,0,0,8" TextWrapping="Wrap"/>
+
+                                <!-- рейтинг -->
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="★" FontSize="16" Foreground="#FFB800" Margin="0,0,4,0"/>
+                                    <TextBlock Text="{Binding Rating}" FontSize="15" FontWeight="Medium" Foreground="#2C2C2C"/>
+                                </StackPanel>
+
+                                <!-- описание / дата -->
+                                <TextBlock Text="{Binding Description}" FontSize="13" Foreground="#8C8C8C" Margin="0,0,0,10" TextWrapping="WrapWithOverflow"/>
+
+                                <!-- возраст -->
+                                <Border Background="#2C2C2C" CornerRadius="6" Padding="10,4" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding AgeRating,StringFormat={}{0}+  }"  FontSize="12" FontWeight="Medium"  Foreground="White"/>
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

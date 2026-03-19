@@ -1,0 +1,58 @@
+﻿<Page x:Class="pr14V2.Pages.BuyTicketPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:pr14V2.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BuyTicketPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- шапка -->
+        <Border Grid.Row="0" Background="White" Padding="40,0" BorderBrush="#2C2C2C" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Content="← Назад" Click="BackButton_Click" Background="Transparent" BorderThickness="0" FontSize="16"/>
+                <TextBlock Text="Выбор мест" FontSize="24" FontWeight="Bold" Margin="30,0,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- экран -->
+        <Border Grid.Row="1" Height="40" Margin="80,20" Background="#E0E0E0" CornerRadius="6">
+            <TextBlock Text="ЭКРАН" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+        </Border>
+
+        <!-- места -->
+        <ItemsControl Grid.Row="2" x:Name="SeatsControl" Margin="80,20">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="10"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <!-- покупка -->
+        <Border Grid.Row="3" BorderBrush="#E0E0E0" BorderThickness="1,1,0,0" Padding="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+                    <TextBlock x:Name="SelectedSeatsText" Text="Выбрано мест: 0" FontSize="16"/>
+                    <TextBlock x:Name="TotalPriceText" Text="Итого: 0 ₽" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+
+                <Button Grid.Column="1" x:Name="BuyButton" Content="Купить" Padding="30,10" FontSize="16" Click="BuyButton_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
