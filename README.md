@@ -4,7 +4,7 @@
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![Avalonia](https://img.shields.io/badge/Avalonia-6A1B9A?style=for-the-badge&logo=avalonia&logoColor=white)
 
-Практическая работа №6.2 по дисциплине **"Поддержка и тестирование программного обеспечения"**
+Практическая работа №6.3 по дисциплине **"Поддержка и тестирование программного обеспечения"**
 
 **Авторы:** Гусенков В.А., Пермякова М.И.  
 **Группа:** 3ИСИП-323  
